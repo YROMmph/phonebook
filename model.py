@@ -5,10 +5,12 @@ SEPARATOR= ';'
 
 def open_phone_book():
     global phone_book
+
     with open(path, 'r', encoding = 'UTF-8') as file:
         data = file.readlines()
     for u_id, contact in enumerate(data, 1):
         phone_book[u_id] = contact.strip().split(SEPARATOR)
+    return phone_book
 
 def save_phone_book() :
     global phone_book
@@ -16,7 +18,7 @@ def save_phone_book() :
     for contact in phone_book.values():
         data.append (SEPARATOR. join(contact))
     data = '\n'.join (data)
-    with open(path, 'W', encoding= 'UTF-8') as file:
+    with open(path, 'w', encoding= 'UTF-8') as file:
         file.write (data)
 
 def _next_id():

@@ -20,7 +20,8 @@ def start_app():
                 model.save_phone_book()
                 view.show_message(text.phone_book_saved_successful)   
             case 3:
-                view.show_contacts(model.open_phone_book, text.empty_phone_book_error)
+                phone_book = model.open_phone_book()
+                view.show_contacts(phone_book, text.empty_phone_book_error)
             case 4:
                 new_contact= view.input_data(text.input_new_contact)
                 model.add_new_contact(new_contact)
@@ -28,7 +29,7 @@ def start_app():
             case 5:
                 find_contacts(text.input_search_word)
             case 6:
-                if find_contacts(text.input_search_dorw_for_edit):
+                if find_contacts(text.input_search_word_for_edit):
                     u_id = int(view.input_data(text.input_id_for_edit))
                     edited_contact = view.input_data(text.edit_contact)
                     name = model.edit_contact(u_id, edited_contact)
